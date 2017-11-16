@@ -5,6 +5,7 @@ int startFlag = 0;
 int recFlag = 0;
 int wFlag = 0;
 int i = 0;
+int cont = 0;
 unsigned long pass[3];
 unsigned long k0;
 unsigned long auxK;
@@ -25,6 +26,7 @@ void loop()
   startFlag = 1;
   noiseFloor = analogRead (A0);
   noiseRoof = noiseFloor * tolerance;
+  Serial.println ("Ingrese nuevo password de 4 golpes");
   }
   else
   {
@@ -35,7 +37,7 @@ void loop()
       {
         recFlag = 1;
         k0 = millis ();
-        delay (100);
+        delay (300);
       }
       else
       {
@@ -43,7 +45,7 @@ void loop()
       auxK = auxK - k0;
       pass[i] = auxK;
       i++;
-      delay (100);
+      delay (300);
       }
     }
   }
@@ -53,5 +55,6 @@ void loop()
   Serial.println (pass[0]);
   Serial.println (pass[1]);
   Serial.println (pass[2]);
+  Serial.println ("Password guardado correctamente");
   }
 }
